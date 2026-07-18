@@ -1,0 +1,38 @@
+########################################################################
+# terraform.tfvars.example
+#
+# COPIA este archivo como "terraform.tfvars" (sin ".example") y rellena
+# los valores reales de tu proyecto. "terraform.tfvars" NO se sube a
+# Artifact Registry ni se comparte; sí puede (y debe) guardarse en el
+# repositorio Git de infraestructura del equipo.
+########################################################################
+
+project_id = "PROJECT_ID_REAL_AQUI"          # ej: prosegur-ia-corp-pro
+region     = "europe-west4"
+environment = "pro"
+name_prefix = "pltia"
+
+# Ajustar con el equipo de redes: rango(s) de la red interna de Prosegur,
+# VPN o bastión desde el que se administrará el clúster (kubectl, CI/CD).
+master_authorized_networks = [
+  {
+    cidr_block   = "10.0.0.0/8"
+    display_name = "red-prosegur"
+  },
+  # {
+  #   cidr_block   = "203.0.113.10/32"
+  #   display_name = "bastion-jenkins"
+  # }
+]
+
+# En una primera implementación se recomienda dejar el endpoint público
+# (pero restringido por master_authorized_networks) para simplificar el
+# primer despliegue. Cuando exista VPN/Interconnect estable a la red de
+# Prosegur, cambiar a "true".
+enable_private_endpoint = false
+
+create_serverless_vpc_connector = true
+
+cluster_name = "gke-corporativo-pltia"
+
+artifact_registry_repository_id = "artifact"

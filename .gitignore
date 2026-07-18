@@ -1,0 +1,13 @@
+# Ignorar la carpeta de proveedores y módulos locales
+.terraform/
+
+# Ignorar los archivos de estado de Terraform (¡tienen datos sensibles!)
+*.tfstate
+*.tfstate.*
+
+# Ignorar archivos de variables secretas que tú crees localmente
+*.tfvars
+*.tfvars.json
+
+# Ignorar archivos de logs
+*.log
